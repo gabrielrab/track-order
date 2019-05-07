@@ -1,0 +1,11 @@
+{
+  "name": "track-order",
+  "version": "1.0.0",
+  "description": "track-order project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gabriel Rabelo",
+  "license": "ISC"
+}
