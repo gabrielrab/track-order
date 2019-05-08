@@ -11,5 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Rotas
+app.use('/', require('./routes'));
+
 
 module.exports = {app: app, server: server};
