@@ -10,6 +10,8 @@ routes.get('/', (req, res)=>{
 
 //Order
 routes.get('/order', OrderController.index);
+routes.get('/order/:orderCode', OrderController.show);
+routes.post('/order', OrderController.create);
 
 
 module.exports = routes;
