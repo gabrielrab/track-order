@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //Banco de Dados
-mongoose.connect('mongodb://gabrielrab:67920000Ab@ds331145.mlab.com:31145/api-tasks', { useNewUrlParser: true, useCreateIndex: true, });
+mongoose.connect('mongodb://gabrielrab:67920000Ab@ds331145.mlab.com:31145/api-tasks', { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false});
 
 //Models
 requireDir('./models');
