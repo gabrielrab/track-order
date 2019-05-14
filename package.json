@@ -4,7 +4,8 @@
   "description": "track-order project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "node ./bin/server.js",
+    "dev": "nodemon ./bin/server.js"
   },
   "author": "Gabriel Rabelo",
   "license": "ISC",
