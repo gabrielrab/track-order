@@ -11,6 +11,11 @@ const OrderSchema = mongoose.Schema({
     },
     sendIn: Date,
     arrivedAt: Date,
+    status: String,
+    lastUpdate: {
+        type: Date,
+        default: Date.now
+    },
     createdAt:{
         type: Date,
         default: Date.now

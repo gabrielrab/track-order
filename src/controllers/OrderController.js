@@ -16,7 +16,7 @@ module.exports = {
             if(err){
                 return res.status(400).send({error: 'Code not found'})
             } else{
-                res.send({order});
+                res.render('rastreador', {order});
             }
         });
     }, 

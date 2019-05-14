@@ -5,7 +5,7 @@ const routes = express.Router();
 const OrderController = require('./controllers/OrderController');
 
 routes.get('/', (req, res)=>{
-    res.send("Tamo na área maluco!");     
+    res.render("index");     
 });
 
 //Order
