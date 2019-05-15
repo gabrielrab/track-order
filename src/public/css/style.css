@@ -9,8 +9,93 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
+
+input, select{
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance: none;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400');
+
 body {
     font-size: 62.5%;
     overflow-x: hidden;
     color: #303030;
+    background-color: #efefee;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.verde-escuro{ color: #275d3b }
+.bg-verde-escuro{ color: #275d3b }
+
+.verde-claro{ color: #75c46b }
+.bg-verde-escuro{ color: #75c46b }
+
+.laranja-claro{ color: #fab244 }
+.bg-laranja-claro{ color: #fab244 }
+
+.laranja-escuro{ color: rgb(216, 120, 48) }
+.bg-laranja-escuro{ color: rgb(216, 120, 48) }
+
+main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.box-search{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em;
+    min-width: 290px;
+    max-width: 500px;
+    border-radius: 5px; 
+}
+form{ text-align: center; }
+span{ font-size: 16px; }
+i{ margin-right: 0.5em }
+.titulo{ font-size: 24px; margin-bottom: 0.5em; }
+input,select {
+    margin-top: 0.5em;
+    padding: 0.8em 1.2em;
+    background-color: #fcf8f8;
+    border: 0.1em solid  #00e88f;
+    color: #a4d69e;
+    border-radius: 0.3em;
+    width: 100%;
+    height: auto;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+input::placeholder {
+    color: #75c46b;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    margin-top: 0.5em;
+    background-color:  #00e88f;
+    color: white;
+    padding: 0.5em 1.2em;
+    border: none;
+    font-size: 16px;
+    border-radius: 0.3em;
+    font-weight: 550;
+    transition: 0.6s;
+    transition-delay: 0.2s;
+    transform-origin: left;
+}
+
+button:hover {
+    background-color: #75c46b;
+    color: white;
 }
