@@ -21,6 +21,7 @@ routes.get('/client', ClientController.index);
 routes.get('/client/:clientId', ClientController.show);
 routes.post('/client', ClientController.create);
 routes.put('/client/:clientId', ClientController.update);
+routes.delete('/client/:clientId', ClientController.destroy);
 
 
 module.exports = routes;

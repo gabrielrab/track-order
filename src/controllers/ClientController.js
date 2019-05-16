@@ -36,7 +36,7 @@ module.exports = {
 
     async update(req, res){
         try {
-            const client = await Client.findById(req.params.clientId);
+            const client = await Client.findByIdAndUpdate(req.params.clientId, req.body, {new: true});
 
             return res.send({client}); 
 
@@ -44,5 +44,10 @@ module.exports = {
             console.log(error);
             return res.status(400).send({error: 'Client not find'});
         }
+    },
+    async destroy (req, res){
+        const client = await User.findByIdAndRemove(req.params.clientId);
+
+        return res.send('Deleted successfully');
     }
 }
