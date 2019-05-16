@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%# Alterar para o nome do sistema. %>
+    <title>Index da Aplicação</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" >
+</head>
+<body>
+<main>
+    <section class="box-search">
+    <h1 class="titulo">Pesquise sua encomenda</h1>
+         <form method="get" action="/order/">
+         <span>Digite abaixo o código da sua encomenda</span>
+            <input type="text" name="code" placeholder="XXX0000000" required>
+            <button type="submit"><i class="fas fa-search"></i> Pesquisar</button>
+        </form>
+    </section>
+</main>
+</body>
+</html>

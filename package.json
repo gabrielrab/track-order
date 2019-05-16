@@ -4,13 +4,15 @@
   "description": "track-order project",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/server.js"
+    "start": "node ./bin/server.js",
+    "dev": "nodemon ./bin/server.js"
   },
   "author": "Gabriel Rabelo",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "debug": "^4.1.1",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.5.6",
     "require-dir": "^1.2.0"
