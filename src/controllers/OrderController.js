@@ -5,7 +5,7 @@ const Order = mongoose.model('Order');
 
 module.exports = {
     async index(req, res){
-        const order = await Order.find().populate('remetente');
+        const order = await Order.find().populate('destinatario');
         return res.send({order});
     },
 
@@ -17,7 +17,7 @@ module.exports = {
                 return res.status(400).send({error: 'Code not found'})
             } else{
                 //return res.send({order});
-                return res.render('rastreador', {order}).populate('remetente');
+                return res.render('rastreador', {order}).populate('destinatario');
             }
         });
     }, 
@@ -26,7 +26,7 @@ module.exports = {
         try {
             const { code, sendIn, arrivedAt } = req.body;
 
-            const order = await Order.create({ code, remetente: req.params.userId, sendIn, arrivedAt});
+            const order = await Order.create({ code, destinatario: req.params.userId, sendIn, arrivedAt});
 
             return res.json(order);
         } catch (error) {

@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
-const ClientSchema = mongoose.Schema({
-    clientFor: String,
+const UserSchema = mongoose.Schema({
     name: String,
     email:{
         type: String,
         unique: true,
         lowercase: true
     },
-    phone:{
+    password:{
         type: String,
+        select: false,
         require: true
     },
     cpf: Number,
@@ -21,6 +22,14 @@ const ClientSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     }
+
 });
 
-mongoose.model('Client', ClientSchema);
+UserSchema.pre('save', async function(next){
+    const hash = await bcrypt.hash(this.password, 10);
+    this.password = hash;
+
+    next();
+});
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
