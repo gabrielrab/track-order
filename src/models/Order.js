@@ -6,8 +6,9 @@ const OrderSchema = mongoose.Schema({
         unique: true
     },
     remetente:{
-        rem_nome: String,
-        rem_cep: Number
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Client',
+        require: true
     },
     sendIn: Date,
     arrivedAt: Date,

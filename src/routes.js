@@ -12,7 +12,7 @@ routes.get('/', (req, res)=>{
 //Order
 routes.get('/order', OrderController.index);
 routes.get('/order/:orderCode', OrderController.show);
-routes.post('/order', OrderController.create);
+routes.post('/order/:userId', OrderController.create);
 routes.put('/order/:orderCode', OrderController.update);
 routes.delete('/order/:orderCode', OrderController.destroy);
 
