@@ -12,10 +12,12 @@ module.exports = {
     async show(req, res){
         try {
             const user = await User.findById(req.params.userId);
-        return res.send({user});
+            return res.send({user});
         } catch (error) {
             console.log(error);
             res.status(400).send({error: 'User not find'});
         }
-    }
+    },
+
+    
 }
