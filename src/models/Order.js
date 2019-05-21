@@ -5,17 +5,14 @@ const OrderSchema = mongoose.Schema({
         type: String,
         unique: true
     },
-    remetente:{
-        rem_nome: String,
-        rem_cep: Number
+    destinatario:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Client',
+        require: true
     },
     sendIn: Date,
     arrivedAt: Date,
     status: String,
-    lastUpdate: {
-        type: Date,
-        default: Date.now
-    },
     createdAt:{
         type: Date,
         default: Date.now
