@@ -47,7 +47,9 @@ module.exports = {
             }
             
             //json({user, token: user.genereteToken()}) 
-            return res.render('token', {user, token: user.genereteToken()});
+            //return res.render('token', {user, token: user.genereteToken()});
+            req.token.user = user.genereteToken();
+            return res.redirect('/dashboard');
 
         } catch (error) {
             console.log(error);

@@ -12,7 +12,14 @@ const authMiddleware = require('./middlewares/auth');
 //Rota inicial
 routes.get('/', (req, res)=>{ res.render("index"); });
 routes.get('/login', (req, res)=>{ res.render("login"); });
-routes.get('/dashboard', (req, res)=>{ res.render("rastreador"); }); 
+routes.get('/dashboard', (req, res)=>{
+    if(req.token && req.token.user){
+        //return res.render("rastreador", {token: req.token.user}); 
+        return res.redirect("/order"); 
+    } else{
+        return res.redirect(401, '/login')
+    }
+}); 
 routes.get('/logado', (req, res)=>{ res.render("logado"); }); 
 
 //User
@@ -23,8 +30,8 @@ routes.post('/authenticate', UserController.authenticate);
 //routes.use(authMiddleware);
 
 //Order
-routes.get('/order', OrderController.index);
-routes.get('/order/:orderCode', OrderController.show);
+routes.get('/order', authMiddleware, OrderController.index);
+routes.get('/order/:orderCode', authMiddleware, OrderController.show);
 routes.post('/order/:userId', OrderController.create);
 routes.put('/order/:orderCode', OrderController.update);
 routes.delete('/order/:orderCode', OrderController.destroy);
