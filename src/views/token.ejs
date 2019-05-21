@@ -1,0 +1,12 @@
+<!-- check for user on page load --> 
+<% if (typeof token != "undefined") { %>
+  <!-- make user available to script tag -->
+  <% var token = token %>
+
+  <!-- use script tag to access ejs data and local storage -->
+  <script>
+    const token = <%- JSON.stringify(token) %>;
+    localStorage.setItem('token', token);
+    window.location.replace("/dashboard");
+  </script>
+<% } %>

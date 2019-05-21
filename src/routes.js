@@ -1,10 +1,6 @@
 const express = require('express');
 const routes = express.Router();
 
- //retirar depois
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
-
 //Import Controllers
 const OrderController = require('./controllers/OrderController');
 const ClientController = require('./controllers/ClientController');
@@ -15,48 +11,16 @@ const authMiddleware = require('./middlewares/auth');
 
 //Rota inicial
 routes.get('/', (req, res)=>{ res.render("index"); });
+routes.get('/login', (req, res)=>{ res.render("login"); });
+routes.get('/dashboard', (req, res)=>{ res.render("rastreador"); }); 
+routes.get('/logado', (req, res)=>{ res.render("logado"); }); 
 
 //User
-routes.post('/register', async(req, res)=>{
-    const { email, name } = req.body;
+routes.post('/register', UserController.create);
+routes.post('/authenticate', UserController.authenticate);
 
-    try {
-        if(await User.findOne({ email })){
-            return res.status(400).send({ error: 'User already exist'});
-        }
-
-        const user = await User.create(req.body);
-
-        return res.json({user});
-    } catch (error) {
-        return res.status(400).json({ error: "User registration failed" });
-    }
-});
-routes.post('/authenticate', async(req, res) =>{
-    const { email, password } = req.body;
-
-    console.log(email);
-
-    const user = await User.findOne({'email': email});
-
-    try {
-        if(!user){
-            return res.status(400).json({ error: "User not found" });
-        }
-
-        if(!(await user.compareHash(password))){
-            return res.status(400).send({error: 'Invalid password'});
-        }
-
-        return res.json({user, token: user.genereteToken()});
-
-    } catch (error) {
-        console.log(error);
-        return res.status(400).json({ error: "User authenticate failed" });
-    }
-});
-//Remover depois
-routes.use(authMiddleware);
+//Remover depois => Colocar nas rotas que necessitem de autenticação depois de acertar o login...
+//routes.use(authMiddleware);
 
 //Order
 routes.get('/order', OrderController.index);
