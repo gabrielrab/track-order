@@ -8,26 +8,20 @@ const UserController = require('./controllers/UserController');
 
 //Middlewares
 const authMiddleware = require('./middlewares/auth');
+const verifyLogin = require('./middlewares/verifyLogin');
+
+//Parei na parte de criar páginas para erro
 
 //Rota inicial
 routes.get('/', (req, res)=>{ res.render("index"); });
-routes.get('/login', (req, res)=>{ res.render("login"); });
-routes.get('/dashboard', (req, res)=>{
-    if(req.token && req.token.user){
-        //return res.render("rastreador", {token: req.token.user}); 
-        return res.redirect("/order"); 
-    } else{
-        return res.redirect(401, '/login')
-    }
-}); 
-routes.get('/logado', (req, res)=>{ res.render("logado"); }); 
+routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
+routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
+routes.get('/logado', (req, res)=>{ res.render("logado"); });
+routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
 
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
-
-//Remover depois => Colocar nas rotas que necessitem de autenticação depois de acertar o login...
-//routes.use(authMiddleware);
 
 //Order
 routes.get('/order', authMiddleware, OrderController.index);
