@@ -5,7 +5,7 @@ const Order = mongoose.model('Order');
 
 module.exports = {
     async index(req, res){
-        const order = await Order.find().populate('destinatario');
+        const order = await Order.find().populate('remetente').populate('destinatario');
         return res.send({order});
     },
 
@@ -17,16 +17,15 @@ module.exports = {
                 return res.status(400).send({error: 'Code not found'})
             } else{
                 //return res.send({order});
-                return res.render('rastreador', {order}).populate('destinatario');
+                return res.render('rastreador', {order}).populate('remetente','destinatario');
             }
         });
     }, 
 
     async create(req, res){
+        //Para criar um order deve criar um input com o id do usuario que esta enviando a encomenda.
         try {
-            const { code, sendIn, arrivedAt } = req.body;
-
-            const order = await Order.create({ code, destinatario: req.params.userId, sendIn, arrivedAt});
+            const order = await Order.create(req.body);
 
             return res.json(order);
         } catch (error) {

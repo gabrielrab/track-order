@@ -8,7 +8,7 @@ module.exports = async (req, res, next)=> {
         res.status(401).send({error: 'No token provid'});
     }
 
-    const [scheme, token] = authHeader;
+    const token = authHeader;
 
     try {
         const decoded = await promisify(jwt.sign)(token, "secret");
@@ -17,6 +17,6 @@ module.exports = async (req, res, next)=> {
 
         return next();
     } catch (error) {
-        return res.status(401).send({error: 'Token invalid'});
+        return res.send({error: 'Token invalid'});
     }
 }

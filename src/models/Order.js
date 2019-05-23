@@ -5,6 +5,11 @@ const OrderSchema = mongoose.Schema({
         type: String,
         unique: true
     },
+    remetente:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        require: true
+    }, 
     destinatario:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Client',
@@ -12,7 +17,7 @@ const OrderSchema = mongoose.Schema({
     },
     sendIn: Date,
     arrivedAt: Date,
-    status: String,
+    status: {type: String, require: true},
     createdAt:{
         type: Date,
         default: Date.now

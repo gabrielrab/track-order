@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const ClientSchema = mongoose.Schema({
-    clientFor: String,
+    clientFor:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        require: true
+    },
     name: String,
     email:{
         type: String,

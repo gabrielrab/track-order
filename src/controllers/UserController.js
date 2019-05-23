@@ -20,7 +20,7 @@ module.exports = {
     },
 
     async create(req, res){
-        const { email, name } = req.body;
+        const { email } = req.body;
 
         try {
             if(await User.findOne({ email })){

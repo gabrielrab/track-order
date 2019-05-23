@@ -23,9 +23,9 @@ routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );})
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
 
-//Order
-routes.get('/order', authMiddleware, OrderController.index);
-routes.get('/order/:orderCode', authMiddleware, OrderController.show);
+//Order -
+routes.get('/order', OrderController.index);
+routes.get('/order/:orderCode', OrderController.show);
 routes.post('/order/:userId', OrderController.create);
 routes.put('/order/:orderCode', OrderController.update);
 routes.delete('/order/:orderCode', OrderController.destroy);
