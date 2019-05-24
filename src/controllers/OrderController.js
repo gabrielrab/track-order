@@ -10,14 +10,13 @@ module.exports = {
     },
 
     async show(req, res){
-        const code = req.params.orderCode;
+        const code = req.query.orderCode;
         
         const order = await Order.findOne({'code': code}, (err, order)=>{
             if(err){
                 return res.status(400).send({error: 'Code not found'})
             } else{
-                //return res.send({order});
-                return res.render('rastreador', {order}).populate('remetente','destinatario');
+                return res.render('showOrder', {order});
             }
         });
     }, 

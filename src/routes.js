@@ -23,13 +23,6 @@ routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );})
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
 
-//Order -
-routes.get('/order', OrderController.index);
-routes.get('/order/:orderCode', OrderController.show);
-routes.post('/order/:userId', OrderController.create);
-routes.put('/order/:orderCode', OrderController.update);
-routes.delete('/order/:orderCode', OrderController.destroy);
-
 //Client
 routes.get('/client', ClientController.index);
 routes.get('/client/:clientId', ClientController.show);
@@ -37,5 +30,11 @@ routes.post('/client', ClientController.create);
 routes.put('/client/:clientId', ClientController.update);
 routes.delete('/client/:clientId', ClientController.destroy);
 
+//Order -
+routes.get('/allorder', OrderController.index);
+routes.get('/order/', OrderController.show);
+routes.post('/order', OrderController.create);
+routes.put('/order/:orderCode', OrderController.update);
+routes.delete('/order/:orderCode', OrderController.destroy);
 
 module.exports = routes;
