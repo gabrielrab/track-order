@@ -6,9 +6,54 @@
     <%- include('./parts/head'); %>
 </head>
 <body>
+<%- include('./parts/nav'); %> 
 <main>
+    <section class="number-order">
+        <span>Encomenda número: </span>
+        <h1 class="titulo">#<%= order.code%></h1>
+    </section>
     <section class="box-search">
-    <h1 class="titulo">Detalhes do codigo-> <%= order.code%></h1>
+        <div class="box-header">
+            <img src="img/box.png" alt="" class="img-box"><br>
+            <span>Status</span>
+            <%# MUDAR AQUI %>
+            <h1 class="verde-escuro"><%= order.status%></h1> 
+            <% var ts = new Date(order.sendIn); %>
+            <%= ts.toISOString().substr(0, 10).split('-').reverse().join('/')%>
+        </div>
+        <hr>
+        <div class="box-header">
+            <h1>Tragetória</h1>
+        </div>
+        <ul>
+            <li></li>
+        </ul>
+    </section>
+    
+    <section class="box-search">
+        <div class="box-header">
+            <h1 class>Destinatário</h1>            
+        </div>
+
+        <ul>
+            <li>
+                <label class="cinza-escuro">Nome:</label><br>
+                <span><%= order.destinatario.name %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Endereço:</label><br>
+                <span><%= order.destinatario.address %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cep:</label><br>
+                <span><%= order.destinatario.cep %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cidade:</label><br>
+                <span><%= order.destinatario.city %> / <%= order.destinatario.uf %></span>
+            </li>
+        </ul>
+            
     </section>
 </main>
 </body>

@@ -18,6 +18,28 @@ const OrderSchema = mongoose.Schema({
     sendIn: Date,
     arrivedAt: Date,
     status: {type: String, require: true},
+    tracks: [
+        {
+            status: {
+                type: String,
+                required: true,
+                lowercase: true
+            },
+            observation: {
+                type: String,
+                required: true,
+            },
+            trackedAt: {
+                type: Date,
+                required: true,
+            },
+            unit: {
+                type: String,
+                required: true,
+                uppercase: true
+            },
+        }
+    ],
     createdAt:{
         type: Date,
         default: Date.now

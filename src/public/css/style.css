@@ -29,7 +29,7 @@ body {
 .cinza-claro{ color: #D0D2D2 }
 .bg-cinza-claro{ color: #D0D2D2 }
 
-.cinza-escuro{ color: #A6A6A6 }
+.cinza-escuro{ color: #494949 }
 .bg-cinza-escuro{ color: #A6A6A6 }
 
 .verde-escuro{ color: #00DD61 }
@@ -48,24 +48,42 @@ main{
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
     justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
 }
 .box-search{
     background-color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 2em;
+    align-items: flex-start;
+    padding: 2em 1.5em 2em 1.5em;
     min-width: 290px;
     max-width: 400px;
     border-radius: 3px;
-    box-shadow: 3px 3px 3px rgba(0,0,0,0.1); 
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+    margin-right: 10px; 
+    margin-bottom: 10px; 
 }
+.box-header{
+    width: 100%;
+    align-self: center;
+    text-align: center;
+    margin-bottom: 1em;
+}
+.number-order{
+    width: 100vw;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.titulo{ font-size: 2.2em }
 form{ text-align: left; }
-span{ font-size: 16px; }
+span{ font-size: 14px;}
+label{ font-size: 12px;}
+h1{ font-size: 18px}
 i{ margin-right: 0.5em }
 .titulo{ font-size: 24px; margin-bottom: 0.5em; }
 input,select {
@@ -108,3 +126,28 @@ button:hover {
     background-color: #5FEA9B;
     color: white;
 }
+
+nav{
+    position: fixed;
+    width: 100vw;
+    top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+img{ max-width: 100%; max-height: 100%}
+.img-box{
+    width:50px;
+    height: 50px;
+}
+.text-center{
+    text-align: center;
+}
+.d-flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+li{ margin-bottom: 0.5em;  width: 100%; }
+
+hr{ color: rgb(253, 253, 253); height: 0.01em; width: 100%; margin-bottom: 0.5em;}

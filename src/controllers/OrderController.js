@@ -11,6 +11,8 @@ module.exports = {
 
     async show(req, res){
         const code = req.query.orderCode;
+
+        //const order = await Order.findOne()
         
         const order = await Order.findOne({'code': code}, (err, order)=>{
             if(err){
@@ -18,7 +20,7 @@ module.exports = {
             } else{
                 return res.render('showOrder', {order});
             }
-        });
+        }).populate('remetente').populate('destinatario');
     }, 
 
     async create(req, res){
