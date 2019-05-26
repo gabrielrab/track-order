@@ -5,7 +5,7 @@ module.exports = async (req, res, next)=> {
     const authHeader = req.token.user;
 
     if(!authHeader){
-        res.status(401).send({error: 'No token provid'});
+        res.status(401).render('login', {error: 'No token provid'});
     }
 
     const token = authHeader;
@@ -17,6 +17,6 @@ module.exports = async (req, res, next)=> {
 
         return next();
     } catch (error) {
-        return res.send({error: 'Token invalid'});
+        return res.status(401).render('login', {error: 'Token invalid'});
     }
 }

@@ -154,3 +154,4 @@ td, th{ padding: 0.5em; font-size: 1.2em;}
 .td-tracks{ font-size: 12px; text-transform: capitalize; text-align: justify;}
 .td-status{ text-transform: capitalize;}
 .td-location{ text-transform: capitalize; font-size: 10px;}
+.error{ color: red;}

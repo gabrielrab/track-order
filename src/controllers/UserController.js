@@ -39,11 +39,11 @@ module.exports = {
 
         try {
             if(!user){
-                return res.status(400).json({ error: "User not found" });
+                return res.render('login', { error: "User not found" });
             }
 
             if(!(await user.compareHash(password))){
-                return res.status(400).send({error: 'Invalid password'});
+                return res.status(400).render('login', {error: 'Senha incorreta'});
             }
             
             //json({user, token: user.genereteToken()}) 
