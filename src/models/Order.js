@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const OrderSchema = mongoose.Schema({
     code: {
-        type: String,
+        type: Number,
         unique: true
     },
     remetente:{
@@ -28,6 +29,7 @@ const OrderSchema = mongoose.Schema({
             observation: {
                 type: String,
                 required: true,
+                lowercase: true
             },
             trackedAt: {
                 type: Date,
@@ -36,7 +38,7 @@ const OrderSchema = mongoose.Schema({
             unit: {
                 type: String,
                 required: true,
-                uppercase: true
+                lowercase: true
             },
         }
     ],
@@ -45,5 +47,7 @@ const OrderSchema = mongoose.Schema({
         default: Date.now
     }
 });
+
+OrderSchema.plugin(AutoIncrement, {id: 'code_seq', inc_field: 'code'});
 
 mongoose.model('Order', OrderSchema);

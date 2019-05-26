@@ -14,7 +14,7 @@ const verifyLogin = require('./middlewares/verifyLogin');
 
 //Rota inicial
 routes.get('/', (req, res)=>{ res.render("index"); });
-routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
+routes.get('/login', (req, res)=>{ res.render("login"); });
 routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
 routes.get('/logado', (req, res)=>{ res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
@@ -34,7 +34,8 @@ routes.delete('/client/:clientId', ClientController.destroy);
 routes.get('/allorder', OrderController.index);
 routes.get('/order/', OrderController.show);
 routes.post('/order', OrderController.create);
-routes.put('/order/:orderCode', OrderController.update);
+routes.put('/order', OrderController.update);
+routes.put('/push-tracks', OrderController.tracks);
 routes.delete('/order/:orderCode', OrderController.destroy);
 
 module.exports = routes;

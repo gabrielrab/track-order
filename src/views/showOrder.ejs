@@ -21,18 +21,27 @@
             <% var ts = new Date(order.sendIn); %>
             <%= ts.toISOString().substr(0, 10).split('-').reverse().join('/')%>
         </div>
-        <hr>
         <div class="box-header">
             <h1>Tragetória</h1>
         </div>
-        <ul>
-            <li></li>
-        </ul>
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Informação</th>
+            </tr>
+            <% for(let i=0; i < order.tracks.length;i++) {%>
+            <tr>
+                <td><% var ts = new Date(order.tracks[i].trackedAt); %>
+                <%= ts.toISOString().substr(0, 10).split('-').reverse().join('/')%> <br><%= ts.toLocaleTimeString(); %></td>
+                <td><span class="verde-escuro td-status"><%= order.tracks[i].status%></span><br><span class="td-tracks"><%= order.tracks[i].observation%></span><br><span class="td-location"><i class="fas fa-map-marker-alt"></i> <%= order.tracks[i].unit%></span></td>
+            </tr>
+            <%}%>
+        </table>
     </section>
     
     <section class="box-search">
         <div class="box-header">
-            <h1 class>Destinatário</h1>            
+              <h1>Destinatário</h1>          
         </div>
 
         <ul>
@@ -53,7 +62,10 @@
                 <span><%= order.destinatario.city %> / <%= order.destinatario.uf %></span>
             </li>
         </ul>
-            
+        <div class="box-header">
+            <label class="cinza-escuro">Remetente:</label><br>            
+            <h1 class="verde-escuro"><%= order.remetente.name %></h1>
+        </div>    
     </section>
 </main>
 </body>

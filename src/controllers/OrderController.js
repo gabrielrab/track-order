@@ -37,7 +37,7 @@ module.exports = {
 
     async update(req, res){
         try {
-            const order = await Order.findOneAndUpdate({'code': req.params.orderCode}, req.body, { new: true }, (err, order)=>{
+            const order = await Order.findOneAndUpdate({'code': req.query.orderCode}, req.body, { new: true }, (err, order)=>{
                 if(err){
                     console.log(error);
                     return res.status(400).send({error: 'Update order error'}); 
@@ -51,6 +51,15 @@ module.exports = {
             return res.status(400).send({error: 'Update order error'});
         }
         
+    },
+
+    async tracks (req, res){
+        //const { code, status, observation, trackedAt, unit } = req.query;
+        const code = req.query.code;
+
+        const order = await Order.findOneAndUpdate({'code': code}, {$push: {tracks: req.body}});
+
+        return res.send({order});
     },
 
     async destroy(req, res){
