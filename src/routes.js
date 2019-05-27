@@ -10,18 +10,18 @@ const UserController = require('./controllers/UserController');
 const authMiddleware = require('./middlewares/auth');
 const verifyLogin = require('./middlewares/verifyLogin');
 
-//Parei na parte de criar páginas para erro
-
-//Rota inicial
+//Páginas
 routes.get('/', (req, res)=>{ res.render("index"); });
 routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
 routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
 routes.get('/logado', (req, res)=>{ res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
+//routes.get('/createOrder', )
 
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
+routes.get('/teste', UserController.selectId);
 
 //Client
 routes.get('/client', ClientController.index);

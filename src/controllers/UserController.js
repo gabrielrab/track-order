@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
 
+//Service
+const decoded = require('../services/decodedToken');
+
 module.exports = {
     async index(req, res){
         const user = await User.find();
@@ -57,4 +60,11 @@ module.exports = {
         }
     },
 
+    async selectId(req, res){
+        const userId = decoded.decodedToken;
+
+        console.log({userId});
+
+        return res.send(userId);
+    }
 }

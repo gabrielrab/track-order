@@ -17,6 +17,6 @@ module.exports = async (req, res, next)=> {
 
         return next();
     } catch (error) {
-        return res.status(401).render('login', {error: 'Token invalid'});
+        return res.render('login', {error: 'Token invalid'});
     }
 }

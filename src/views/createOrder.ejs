@@ -2,19 +2,10 @@
 <html lang="pt-br">
 <head>
     <%# Alterar para o nome do sistema. %>
-    <title>Login</title>
+    <title>Criar Rastreamento</title>
     <%- include('./parts/head'); %>
 </head>
 <body>
-<script>
-    const value = localStorage.getItem('token');
-    if(value == null || value == '' || value == undefined){
-        console.log('login');
-    } else {
-        window.location.replace("/logado");
-    }
-    
-</script>
 <main>
     <section class="box-search">
     <div class="box-header">
