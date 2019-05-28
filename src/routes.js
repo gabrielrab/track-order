@@ -21,6 +21,9 @@ routes.get('/logado', (req, res)=>{ res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
 routes.get('/createOrder', (req, res)=>{ res.render('createOrder', {id: decoded.decodedToken(req, res)})});
 
+// Parei na parte de fazer o select de destinatários do cliente.
+// tenho que retornar para a view um objeto contendo somente os clientes cadastrados do fornecedor cujo id está sendo passado na rota.
+
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);

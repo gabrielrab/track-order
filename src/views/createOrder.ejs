@@ -6,15 +6,20 @@
     <%- include('./parts/head'); %>
 </head>
 <body>
+    <%- include('./parts/nav'); %>
 <main>
     <section class="box-search">
     <div class="box-header">
         <img src="img/box.png" alt="" class="img-box"><br>
-        <h1 class="titulo">ID -> <%= id %></h1>
+        <h1 class="titulo">Criar Rastreamento</h1>
     </div>
-         <form method="post" action="/authenticate">
-            <span>Email:</span>
-            <input type="email" name="email" required>
+         <form method="post" action="/order">
+            <input type="text" name="remetente" value="<%= id %>" required>
+            <span>Quem será o destinatário ?</span>
+            <select name="destinatário" required>
+                <option hidden>Selecione</option>
+                <option> Look Moveis </option>
+            </select>
             <span>Senha:</span>
             <input type="password" name="password" required>
             <button type="submit"></i> Entrar</button>

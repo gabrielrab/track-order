@@ -88,7 +88,8 @@ i{ margin-right: 0.5em }
 .titulo{ font-size: 24px; margin-bottom: 0.5em; }
 input,select {
     font-family: 'Montserrat', sans-serif;
-    margin-top: 0.9em;
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
     padding: 0.8em 1.2em;
     background-color: transparent;
     border: 0.1em solid  #D0D2D2;
