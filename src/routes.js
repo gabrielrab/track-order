@@ -10,13 +10,16 @@ const UserController = require('./controllers/UserController');
 const authMiddleware = require('./middlewares/auth');
 const verifyLogin = require('./middlewares/verifyLogin');
 
+//Services
+const decoded = require('./services/decodedToken');
+
 //Páginas
 routes.get('/', (req, res)=>{ res.render("index"); });
 routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
 routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
 routes.get('/logado', (req, res)=>{ res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
-//routes.get('/createOrder', )
+routes.get('/createOrder', (req, res)=>{ res.render('createOrder', {id: decoded.decodedToken(req, res)})});
 
 //User
 routes.post('/register', UserController.create);

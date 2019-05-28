@@ -61,10 +61,7 @@ module.exports = {
     },
 
     async selectId(req, res){
-        const userId = decoded.decodedToken;
-
-        console.log({userId});
-
-        return res.send(userId);
+        const rec = decoded.decodedToken(req, res);
+        console.log(rec);
     }
 }
