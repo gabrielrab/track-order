@@ -11,8 +11,6 @@ module.exports = {
 
     async show(req, res){
         const code = req.query.orderCode;
-
-        //const order = await Order.findOne()
         
         const order = await Order.findOne({'code': code}, (err, order)=>{
             if(err){
