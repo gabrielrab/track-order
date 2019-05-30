@@ -18,11 +18,14 @@
             <span>Quem será o destinatário ?</span>
             <select name="destinatário" required>
                 <option hidden>Selecione</option>
-                <option> Look Moveis </option>
+            <% for(let i=0; i < r_client.length;i++) {%>
+                <option><%= r_client[i].name %></option>
+            <%}%>
             </select>
-            <span>Senha:</span>
-            <input type="password" name="password" required>
-            <button type="submit"></i> Entrar</button>
+            <a href=""><i class="fas fa-plus-circle"></i> Novo destinatário</a><br>
+            <span>Data estimada de entrega:</span>
+            <input type="date" name="arrivedAt" required>
+            <button type="submit"> Criar</button>
         </form>
         <div class="box-header">
         <% if(typeof(error) != "undefined"){ %>
