@@ -22,9 +22,11 @@ module.exports = {
     }, 
 
     async create(req, res){
-        //Para criar um order deve criar um input com o id do usuario que esta enviando a encomenda.
+        const { remetente, destinatario, status, arrivedAt } = req.body
+        const formatedData = new Date(arrivedAt);
+
         try {
-            const order = await Order.create(req.body);
+            const order = await Order.create({remetente: remetente, destinatario: destinatario, status: status, arrivedAt: formatedData});
 
             return res.json(order);
         } catch (error) {

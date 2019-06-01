@@ -16,7 +16,10 @@ const OrderSchema = mongoose.Schema({
         ref: 'Client',
         require: true
     },
-    sendIn: Date,
+    sendIn: {
+        type: Date,
+        default: Date.now 
+    },
     arrivedAt: Date,
     status: {type: String, require: true},
     tracks: [
@@ -33,6 +36,7 @@ const OrderSchema = mongoose.Schema({
             },
             trackedAt: {
                 type: Date,
+                default: Date.now,
                 required: true,
             },
             unit: {

@@ -18,7 +18,7 @@
             <span>Status</span>
             <%# MUDAR AQUI %>
             <h1 class="verde-escuro"><%= order.status%></h1> 
-            <% var ts = new Date(order.sendIn); %>
+            <% var ts = new Date(order.arrivedAt); %>
             <%= ts.toISOString().substr(0, 10).split('-').reverse().join('/')%>
         </div>
         <div class="box-header">

@@ -14,13 +14,23 @@
         <h1 class="titulo">Criar Rastreamento</h1>
     </div>
          <form method="post" action="/order">
-            <input type="text" name="remetente" value="<%= id %>" required>
+            <input type="text" name="remetente" value="<%= id %>" hidden required>
             <span>Quem será o destinatário ?</span>
             <select name="destinatário" required>
                 <option hidden>Selecione</option>
             <% for(let i=0; i < r_client.length;i++) {%>
                 <option><%= r_client[i].name %></option>
             <%}%>
+            </select>
+            <span>Qual o status da encomenda ?</span>
+            <select name="status" required>
+                <option hidden>Selecione</option>
+                <option>Em fabricação</option>
+                <option>Em expedição</option>
+                <option>Aguardando confirmação</option>
+                <option>Objeto postado</option>
+                <option>Em transporte</option>
+                <option>Entrega realizada</option>
             </select>
             <a href=""><i class="fas fa-plus-circle"></i> Novo destinatário</a><br>
             <span>Data estimada de entrega:</span>
