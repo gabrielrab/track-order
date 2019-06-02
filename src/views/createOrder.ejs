@@ -19,7 +19,7 @@
             <select name="destinatário" required>
                 <option hidden>Selecione</option>
             <% for(let i=0; i < r_client.length;i++) {%>
-                <option><%= r_client[i].name %></option>
+                <option  value='<%= r_client[i]._id %>'     >  <%= r_client[i].name %></option>
             <%}%>
             </select>
             <span>Qual o status da encomenda ?</span>
