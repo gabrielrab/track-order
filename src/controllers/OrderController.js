@@ -23,6 +23,7 @@ module.exports = {
 
     async create(req, res){
         const { remetente, destinatario, status, arrivedAt } = req.body
+        
         const formatedData = new Date(arrivedAt);
 
         try {

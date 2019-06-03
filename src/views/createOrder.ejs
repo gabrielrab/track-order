@@ -16,12 +16,13 @@
          <form method="post" action="/order">
             <input type="text" name="remetente" value="<%= id %>" hidden required>
             <span>Quem será o destinatário ?</span>
-            <select name="destinatário" required>
+            <select name="destinatario" required>
                 <option hidden>Selecione</option>
             <% for(let i=0; i < r_client.length;i++) {%>
-                <option  value='<%= r_client[i]._id %>'     >  <%= r_client[i].name %></option>
+                <option  value="<%= r_client[i]._id %>">  <%= r_client[i].name %> </option>
             <%}%>
             </select>
+            <a href="/createClient"><i class="fas fa-plus-circle"></i> Novo destinatário</a><br>
             <span>Qual o status da encomenda ?</span>
             <select name="status" required>
                 <option hidden>Selecione</option>
@@ -32,7 +33,6 @@
                 <option>Em transporte</option>
                 <option>Entrega realizada</option>
             </select>
-            <a href=""><i class="fas fa-plus-circle"></i> Novo destinatário</a><br>
             <span>Data estimada de entrega:</span>
             <input type="date" name="arrivedAt" required>
             <button type="submit"> Criar</button>

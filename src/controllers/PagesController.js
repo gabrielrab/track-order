@@ -19,5 +19,11 @@ module.exports = {
             }
         });
 
+    },
+
+    async createClient(req, res){
+        const id = decoded.decodedToken(req, res);
+
+        return res.render('createClient', {id: id});
     }
 }
