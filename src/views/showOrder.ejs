@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%# Alterar para o nome do sistema. %>
+    <title>Detalhes</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+<%- include('./parts/nav'); %> 
+<main>
+    <section class="number-order">
+        <span>Código da encomenda: </span>
+        <h1 class="titulo">#<%= order.code%></h1>
+    </section>
+    <section class="box-search">
+        <div class="box-header">
+            <img src="img/box.png" alt="" class="img-box"><br>
+            <span>Status</span>
+            <%# MUDAR AQUI %>
+            <h1 class="verde-escuro"><%= order.status%></h1> 
+            <% var ts = new Date(order.arrivedAt); %>
+            <%= ts.toISOString().substr(0, 10).split('-').reverse().join('/')%>
+        </div>
+        <div class="box-header">
+            <h1>Tragetória</h1>
+        </div>
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Informação</th>
+            </tr>
+            <% for(let i=0; i < order.tracks.length;i++) {%>
+            <tr>
+                <td><% var ts = new Date(order.tracks[i].trackedAt); %>
+                <%= ts.toISOString().substr(0, 10).split('-').reverse().join('/')%> <br><%= ts.toLocaleTimeString(); %></td>
+                <td><span class="verde-escuro td-status"><%= order.tracks[i].status%></span><br><span class="td-tracks"><%= order.tracks[i].observation%></span><br><span class="td-location"><i class="fas fa-map-marker-alt"></i> <%= order.tracks[i].unit%></span></td>
+            </tr>
+            <%}%>
+        </table>
+    </section>
+    
+    <section class="box-search">
+        <div class="box-header">
+              <h1>Destinatário</h1>          
+        </div>
+
+        <ul>
+            <li>
+                <label class="cinza-escuro">Nome:</label><br>
+                <span><%= order.destinatario.name %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Endereço:</label><br>
+                <span><%= order.destinatario.address %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cep:</label><br>
+                <span><%= order.destinatario.cep %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cidade:</label><br>
+                <span><%= order.destinatario.city %> / <%= order.destinatario.uf %></span>
+            </li>
+        </ul>
+        <div class="box-header">
+            <label class="cinza-escuro">Remetente:</label><br>            
+            <h1 class="verde-escuro"><%= order.remetente.name %></h1>
+        </div>    
+    </section>
+</main>
+</body>
+</html>

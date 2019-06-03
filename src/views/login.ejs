@@ -3,11 +3,7 @@
 <head>
     <%# Alterar para o nome do sistema. %>
     <title>Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" >
+    <%- include('./parts/head'); %>
 </head>
 <body>
 <script>
@@ -21,12 +17,22 @@
 </script>
 <main>
     <section class="box-search">
-    <h1 class="titulo">Login</h1>
+    <div class="box-header">
+        <img src="img/box.png" alt="" class="img-box"><br>
+        <h1 class="titulo">Login</h1>
+    </div>
          <form method="post" action="/authenticate">
-            <input type="email" name="email" placeholder="Email:" required>
-            <input type="password" name="password" placeholder="Senha" required>
-            <button type="submit"><i class="fas fa-search"></i> Entrar</button>
+            <span>Email:</span>
+            <input type="email" name="email" required>
+            <span>Senha:</span>
+            <input type="password" name="password" required>
+            <button type="submit"></i> Entrar</button>
         </form>
+        <div class="box-header">
+        <% if(typeof(error) != "undefined"){ %>
+            <span class="error"><%= error %></span>
+        <% } %>
+        </div>
     </section>
 </main>
 </body>

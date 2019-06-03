@@ -2,12 +2,13 @@ const jwt = require('jsonwebtoken');
 const {promisify} = require('util');
 
 module.exports = async (req, res, next)=> {
-    const authHeader = req.authHeader.authorization;
+    const authHeader = req.token.user;
 
     if(!authHeader){
-        res.status(401).send({error: 'No token provid'});
+        res.status(401).render('login', {error: 'No token provid'});
     }
-    const [scheme, token] = authHeader.split(" ");
+
+    const token = authHeader;
 
     try {
         const decoded = await promisify(jwt.sign)(token, "secret");
@@ -16,6 +17,6 @@ module.exports = async (req, res, next)=> {
 
         return next();
     } catch (error) {
-        return res.status(401).send({error: 'Token invalid'});
+        return res.render('login', {error: 'Token invalid'});
     }
 }

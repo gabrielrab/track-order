@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
 
+//Service
+const decoded = require('../services/decodedToken');
+
 module.exports = {
     async index(req, res){
         const user = await User.find();
@@ -20,7 +23,7 @@ module.exports = {
     },
 
     async create(req, res){
-        const { email, name } = req.body;
+        const { email } = req.body;
 
         try {
             if(await User.findOne({ email })){
@@ -39,15 +42,17 @@ module.exports = {
 
         try {
             if(!user){
-                return res.status(400).json({ error: "User not found" });
+                return res.render('login', { error: "User not found" });
             }
 
             if(!(await user.compareHash(password))){
-                return res.status(400).send({error: 'Invalid password'});
+                return res.status(400).render('login', {error: 'Senha incorreta'});
             }
             
             //json({user, token: user.genereteToken()}) 
-            return res.render('token', {user, token: user.genereteToken()});
+            //return res.render('token', {user, token: user.genereteToken()});
+            req.token.user = user.genereteToken();
+            return res.redirect('/dashboard');
 
         } catch (error) {
             console.log(error);
@@ -55,4 +60,8 @@ module.exports = {
         }
     },
 
+    async selectId(req, res){
+        const rec = decoded.decodedToken(req, res);
+        console.log(rec);
+    }
 }

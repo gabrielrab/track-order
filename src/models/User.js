@@ -13,9 +13,13 @@ const UserSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    cpf: Number,
+    cpf: String,
+    phone:{
+        type: String,
+        require: true
+    },
     address: String,
-    cep: Number,
+    cep: String,
     city: String,
     uf: String,
     createdAt: {

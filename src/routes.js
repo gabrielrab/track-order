@@ -5,29 +5,25 @@ const routes = express.Router();
 const OrderController = require('./controllers/OrderController');
 const ClientController = require('./controllers/ClientController');
 const UserController = require('./controllers/UserController');
+const PagesController = require('./controllers/PagesController');
 
 //Middlewares
 const authMiddleware = require('./middlewares/auth');
+const verifyLogin = require('./middlewares/verifyLogin');
 
-//Rota inicial
+//Páginas
 routes.get('/', (req, res)=>{ res.render("index"); });
-routes.get('/login', (req, res)=>{ res.render("login"); });
-routes.get('/dashboard', (req, res)=>{ res.render("rastreador"); }); 
-routes.get('/logado', (req, res)=>{ res.render("logado"); }); 
+routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
+routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
+routes.get('/logado', (req, res)=>{ res.render("logado"); });
+routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
+routes.get('/createOrder', PagesController.createOrder);
+routes.get('/createClient', PagesController.createClient);
 
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
-
-//Remover depois => Colocar nas rotas que necessitem de autenticação depois de acertar o login...
-//routes.use(authMiddleware);
-
-//Order
-routes.get('/order', OrderController.index);
-routes.get('/order/:orderCode', OrderController.show);
-routes.post('/order/:userId', OrderController.create);
-routes.put('/order/:orderCode', OrderController.update);
-routes.delete('/order/:orderCode', OrderController.destroy);
+routes.get('/teste', UserController.selectId);
 
 //Client
 routes.get('/client', ClientController.index);
@@ -36,5 +32,12 @@ routes.post('/client', ClientController.create);
 routes.put('/client/:clientId', ClientController.update);
 routes.delete('/client/:clientId', ClientController.destroy);
 
+//Order -
+routes.get('/allorder', OrderController.index);
+routes.get('/order/', OrderController.show);
+routes.post('/order', OrderController.create);
+routes.put('/order', OrderController.update);
+routes.put('/push-tracks', OrderController.tracks);
+routes.delete('/order/:orderCode', OrderController.destroy);
 
 module.exports = routes;

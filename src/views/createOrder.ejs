@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%# Alterar para o nome do sistema. %>
+    <title>Criar Rastreamento</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+    <%- include('./parts/nav'); %>
+<main>
+    <section class="box-search">
+    <div class="box-header">
+        <img src="img/box.png" alt="" class="img-box"><br>
+        <h1 class="titulo">Criar Rastreamento</h1>
+    </div>
+         <form method="post" action="/order">
+            <input type="text" name="remetente" value="<%= id %>" hidden required>
+            <span>Quem será o destinatário ?</span>
+            <select name="destinatario" required>
+                <option hidden>Selecione</option>
+            <% for(let i=0; i < r_client.length;i++) {%>
+                <option  value="<%= r_client[i]._id %>">  <%= r_client[i].name %> </option>
+            <%}%>
+            </select>
+            <a href="/createClient"><i class="fas fa-plus-circle"></i> Novo destinatário</a><br>
+            <span>Qual o status da encomenda ?</span>
+            <select name="status" required>
+                <option hidden>Selecione</option>
+                <option>Em fabricação</option>
+                <option>Em expedição</option>
+                <option>Aguardando confirmação</option>
+                <option>Objeto postado</option>
+                <option>Em transporte</option>
+                <option>Entrega realizada</option>
+            </select>
+            <span>Data estimada de entrega:</span>
+            <input type="date" name="arrivedAt" required>
+            <button type="submit"> Criar</button>
+        </form>
+        <div class="box-header">
+        <% if(typeof(error) != "undefined"){ %>
+            <span class="error"><%= error %></span>
+        <% } %>
+        </div>
+    </section>
+</main>
+</body>
+</html>

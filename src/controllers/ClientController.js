@@ -5,13 +5,13 @@ const Client = mongoose.model('Client');
 
 module.exports = {
     async index(req, res){
-        const client = await Client.find();
+        const client = await Client.find().populate('clientFor');
         return res.send({client});
     },
 
     async show(req, res){
         try {
-            const client = await Client.findById(req.params.clientId);
+            const client = await Client.findById(req.params.clientId).populate('clientFor');
 
             return res.send({client}); 
 

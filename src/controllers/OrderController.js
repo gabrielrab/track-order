@@ -5,28 +5,29 @@ const Order = mongoose.model('Order');
 
 module.exports = {
     async index(req, res){
-        const order = await Order.find().populate('destinatario');
+        const order = await Order.find().populate('remetente').populate('destinatario');
         return res.send({order});
     },
 
     async show(req, res){
-        const code = req.params.orderCode;
+        const code = req.query.orderCode;
         
         const order = await Order.findOne({'code': code}, (err, order)=>{
             if(err){
                 return res.status(400).send({error: 'Code not found'})
             } else{
-                //return res.send({order});
-                return res.render('rastreador', {order}).populate('destinatario');
+                return res.render('showOrder', {order});
             }
-        });
+        }).populate('remetente').populate('destinatario');
     }, 
 
     async create(req, res){
-        try {
-            const { code, sendIn, arrivedAt } = req.body;
+        const { remetente, destinatario, status, arrivedAt } = req.body
+        
+        const formatedData = new Date(arrivedAt);
 
-            const order = await Order.create({ code, destinatario: req.params.userId, sendIn, arrivedAt});
+        try {
+            const order = await Order.create({remetente: remetente, destinatario: destinatario, status: status, arrivedAt: formatedData});
 
             return res.json(order);
         } catch (error) {
@@ -37,7 +38,7 @@ module.exports = {
 
     async update(req, res){
         try {
-            const order = await Order.findOneAndUpdate({'code': req.params.orderCode}, req.body, { new: true }, (err, order)=>{
+            const order = await Order.findOneAndUpdate({'code': req.query.orderCode}, req.body, { new: true }, (err, order)=>{
                 if(err){
                     console.log(error);
                     return res.status(400).send({error: 'Update order error'}); 
@@ -51,6 +52,15 @@ module.exports = {
             return res.status(400).send({error: 'Update order error'});
         }
         
+    },
+
+    async tracks (req, res){
+        //const { code, status, observation, trackedAt, unit } = req.query;
+        const code = req.query.code;
+
+        const order = await Order.findOneAndUpdate({'code': code}, {$push: {tracks: req.body}});
+
+        return res.send({order});
     },
 
     async destroy(req, res){
