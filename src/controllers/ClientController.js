@@ -26,6 +26,7 @@ module.exports = {
         try {
             const client = await Client.create(req.body);
 
+            //Redirecionar para view createSuccess
             return res.json(client);
 
         } catch (error) {
