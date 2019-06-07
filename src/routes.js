@@ -13,9 +13,9 @@ const verifyLogin = require('./middlewares/verifyLogin');
 
 //Páginas
 routes.get('/', (req, res)=>{ res.render("index"); });
-routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
-routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
-routes.get('/logado', (req, res)=>{ res.render("logado"); });
+routes.get('/login', verifyLogin, (req, res)=>{ return res.render("login"); });
+routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador");}); 
+routes.get('/logado', (req, res)=>{ return res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
 routes.get('/createOrder', PagesController.createOrder);
 routes.get('/createClient', PagesController.createClient);
