@@ -20,6 +20,8 @@ routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );})
 routes.get('/createOrder', PagesController.createOrder);
 routes.get('/createClient', PagesController.createClient);
 
+//routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
+
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
