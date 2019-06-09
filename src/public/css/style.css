@@ -41,7 +41,7 @@ body {
 .laranja-claro{ color: #fab244 }
 .bg-laranja-claro{ color: #fab244 }
 
-.laranja-escuro{ color: rgb(216, 120, 48) }
+.laranja-escuro{ color: #d87830 }
 .bg-laranja-escuro{ color: rgb(216, 120, 48) }
 
 main{
@@ -123,7 +123,7 @@ button, .btn {
     transform-origin: left;
 }
 
-button, .btn:hover {
+button:hover, .btn:hover {
     background-color: #5FEA9B;
     color: white;
 }
@@ -158,7 +158,6 @@ td, th{ padding: 0.5em; font-size: 1.2em;}
 .error{ color: red;}
 
 header{
-    position: absolute;
     background-color: white;
     width: 100vw;
     height: 10vh;
@@ -171,16 +170,69 @@ header{
     width: 100vw;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
 }
 
 #main-dashboard section{
     width: 90vw;
     background-color: white;
     border-radius: 3px;
-    box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: flex-start;
     padding: 2em;
+    border: 0.1em solid #D0D2D2;
+}
+.line-cards{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 1em;
+}
+.d-table{
+    width: 100%;
+    text-align: left;
+}
+
+.d-table tr th{
+    font-size: 1.7em;
+}
+.d-row{
+    margin: 0.5em;
+}
+.d-td{
+    font-size: 1.5em;
+}
+.d-row:nth-child(even) {background: #fcfcfc}
+.card{
+    text-align: left;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 320px;
+    height: 200px;
+    border-radius: 5px;
+    padding: 2em;
+    margin-right: 1em;
+    background-repeat: no-repeat;
+    transition: all 0.3s; 
+}
+.card:nth-child(1){
+    background-image: url('../img/bg.png');
+}
+.card:nth-child(2){
+    background-image: url('../img/bg2.png');
+}
+.card:nth-child(3){
+    background-image: url('../img/bg3.png');
+}
+.card:hover{
+    background-size: 99%;
+}
+.card h3{
+    font-size: 3.2em;
 }
