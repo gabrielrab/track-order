@@ -13,12 +13,12 @@ const verifyLogin = require('./middlewares/verifyLogin');
 
 //Páginas
 routes.get('/', (req, res)=>{ res.render("index"); });
-routes.get('/login', verifyLogin, (req, res)=>{ return res.render("login"); });
-routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("dashboard");}); 
+routes.get('/login', verifyLogin, (req, res)=>{ return res.render("login"); }); 
 routes.get('/logado', (req, res)=>{ return res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
 routes.get('/createOrder', PagesController.createOrder);
 routes.get('/createClient', PagesController.createClient);
+routes.get('/dashboard', authMiddleware, PagesController.goDashboard);
 
 //routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
 

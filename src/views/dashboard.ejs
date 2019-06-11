@@ -32,18 +32,14 @@
                     <th>Status</th>
                     <th>Atualizar</th>
                 </tr>
+                <% for(let i=0; i < orders.length;i++) {%>
                 <tr class="d-row">
-                    <td class="d-td">001</td>
+                    <td class="d-td"><%= orders[i].code %></td>
                     <td class="d-td">Encomendas.com</td>
                     <td class="d-td">Em transporte</td>
                     <td class="d-td"><a href=""><i class="fas fa-arrow-circle-right fa-2x verde-escuro"></i></a></td>
                 </tr>
-                <tr class="d-row">
-                    <td class="d-td">001</td>
-                    <td class="d-td">Encomendas.com</td>
-                    <td class="d-td">Em transporte</td>
-                    <td class="d-td"><a href="" class="btn-circle">Atualizar</a></td>
-                </tr>
+                <%}%>
             </table>
         </section>
     </main>
