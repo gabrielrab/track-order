@@ -244,4 +244,7 @@ header{
     margin-bottom: 0.5em;
     font-size: 11px;
 }
+.hover:hover{
+    color: #00DD61;
+}
 
