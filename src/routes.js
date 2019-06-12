@@ -41,6 +41,6 @@ routes.get('/order/', OrderController.show);
 routes.post('/order', OrderController.create);
 routes.put('/order', OrderController.update);
 routes.post('/push-tracks', OrderController.tracks);
-routes.delete('/order/:orderCode', OrderController.destroy);
+routes.get('/delete-order', OrderController.destroy);
 
 module.exports = routes;

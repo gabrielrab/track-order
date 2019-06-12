@@ -29,7 +29,7 @@ module.exports = {
         try {
             const order = await Order.create({remetente: remetente, destinatario: destinatario, status: status, arrivedAt: formatedData});
 
-            return res.json(order);
+            return res.render('createSuccess', {message: 'Rastreamento criado com sucesso!'});
         } catch (error) {
             console.log(error);
             return res.status(400).send({error: 'Create order error'});
@@ -68,12 +68,12 @@ module.exports = {
 
     async destroy(req, res){
         try {
-            const order = await Order.findOneAndDelete({'code': req.params.orderCode}, (err, order)=>{
+            const order = await Order.findOneAndDelete({'code': req.query.orderCode}, (err, order)=>{
                 if (err) {
                     console.log(err)
                     res.status(400).send({error: 'Delete order error'});
                 } else {
-                    res.send('Delete order success');
+                    res.render('createSuccess', {message: 'Rastreamento de encomenda deletado com sucesso!'});
                 }
             });
         } catch (error) {
