@@ -55,12 +55,14 @@ module.exports = {
     },
 
     async tracks (req, res){
-        //const { code, status, observation, trackedAt, unit } = req.query;
-        const code = req.query.code;
-
-        const order = await Order.findOneAndUpdate({'code': code}, {$push: {tracks: req.body}});
-
-        return res.send({order});
+        const { status, observation, unit } = req.body;
+        
+        try {
+            const order = await Order.findOneAndUpdate({'code': req.body.code}, {$push: {tracks: {status, observation, unit}}});
+            return res.send({order});    
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     async destroy(req, res){

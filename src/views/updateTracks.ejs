@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%# Alterar para o nome do sistema. %>
+    <title>Atualizar Encomenda</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+<%- include('./parts/nav'); %> 
+<main>
+    <section class="number-order">
+        <span>Código da encomenda: </span>
+        <h1 class="titulo">#<%= order.code%></h1>
+    </section>
+    <section class="box-search">
+        <div class="box-header">
+            <h1>Atualização da Encomenda</h1>
+            <a class="cinza-escuro" id="help-mode" onclick="helpMode();">Modo de Ajuda <i class="fas fa-question-circle"></i></a>
+        </div>
+        <form action="push-tracks" method="post">
+        <%# code, status, observation, trackedAt, unit %>
+            <input type="text" name="code" value="<%= order.code %>" hidden>
+            <span>Status:</span>
+            <select name="status" required>
+                <option hidden>Selecione</option>
+                <option>Em fabricação</option>
+                <option>Em expedição</option>
+                <option>Aguardando confirmação</option>
+                <option>Objeto postado</option>
+                <option>Objeto encaminhado</option>
+                <option>Em transporte</option>
+                <option>Entrega realizada</option>
+            </select>
+            <p class="text-help">Selecione o status atual desta encomenda.</p>
+            <span>Descrição:</span>
+            <textarea name="observation" required></textarea>
+            <p class="text-help">Preencha o campo acima com uma descrição sobre essa atualização de status. Ex.: "Objeto encaminhado para o CDD de Belo Horizonte-MG"</p>
+            <span>Unidade:</span>
+            <input type="text" name="unit" placeholder="Cidade-UF" required>
+            <p class="text-help">Preencha o campo acima com o nome da cidade onde a encomenda se encontra no momento desta atualização. Ex.: "Belo Horizonte-MG"</p>
+            <button type="submit">Atualizar</button>
+        </form>
+    </section>
+    
+    <section class="box-search">
+        <div class="box-header">
+              <h1>Destinatário</h1>          
+        </div>
+
+        <ul>
+            <li>
+                <label class="cinza-escuro">Nome:</label><br>
+                <span><%= order.destinatario.name %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Endereço:</label><br>
+                <span><%= order.destinatario.address %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cep:</label><br>
+                <span><%= order.destinatario.cep %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cidade:</label><br>
+                <span><%= order.destinatario.city %> / <%= order.destinatario.uf %></span>
+            </li>
+        </ul>
+        <div class="box-header">
+            <label class="cinza-escuro">Remetente:</label><br>            
+            <h1 class="verde-escuro"><%= order.remetente.name %></h1>
+        </div>    
+    </section>
+</main>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

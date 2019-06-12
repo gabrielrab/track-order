@@ -19,6 +19,7 @@ routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );})
 routes.get('/createOrder', PagesController.createOrder);
 routes.get('/createClient', PagesController.createClient);
 routes.get('/dashboard', authMiddleware, PagesController.goDashboard);
+routes.get('/update', PagesController.updateTracks);
 
 //routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
 
@@ -39,7 +40,7 @@ routes.get('/allorder', OrderController.index);
 routes.get('/order/', OrderController.show);
 routes.post('/order', OrderController.create);
 routes.put('/order', OrderController.update);
-routes.put('/push-tracks', OrderController.tracks);
+routes.post('/push-tracks', OrderController.tracks);
 routes.delete('/order/:orderCode', OrderController.destroy);
 
 module.exports = routes;

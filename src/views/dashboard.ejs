@@ -35,9 +35,9 @@
                 <% for(let i=0; i < orders.length;i++) {%>
                 <tr class="d-row">
                     <td class="d-td"><%= orders[i].code %></td>
-                    <td class="d-td">Encomendas.com</td>
-                    <td class="d-td">Em transporte</td>
-                    <td class="d-td"><a href=""><i class="fas fa-arrow-circle-right fa-2x verde-escuro"></i></a></td>
+                    <td class="d-td"><%= orders[i].destinatario.name %></td>
+                    <td class="d-td"><%= orders[i].status %></td>
+                    <td class="d-td"><a href="/update?id=<%= orders[i]._id %>"><i class="fas fa-arrow-circle-right fa-2x verde-escuro"></i></a></td>
                 </tr>
                 <%}%>
             </table>

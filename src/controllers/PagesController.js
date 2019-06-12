@@ -38,6 +38,15 @@ module.exports = {
                 return res.render('dashboard', {orders});
                 //return res.send({orders});
             }
-        });
+        }).populate('remetente').populate('destinatario');
+    },
+
+    async updateTracks(req, res){
+        // Aqui tenho que retornar uma página com todo o conteúdo referente a track que deve ser atualizada.
+        const id = req.query.id;
+
+        const order = await Order.findById(id).populate('remetente').populate('destinatario');
+
+        return res.render('updateTracks', {order});
     }
 }
