@@ -59,7 +59,8 @@ module.exports = {
         
         try {
             const order = await Order.findOneAndUpdate({'code': req.body.code}, {$push: {tracks: {status, observation, unit}}});
-            return res.send({order});    
+            //aqui
+            return res.render('createSuccess', {message: 'Atualização realizada com sucesso !', order});    
         } catch (error) {
             console.log(error);
         }

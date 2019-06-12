@@ -26,7 +26,7 @@ module.exports = {
         try {
             const client = await Client.create(req.body);
 
-            return res.render('createSuccess', {client});
+            return res.render('createSuccess', {message: 'Cliente criado com sucesso !', client});
 
         } catch (error) {
             console.log(error);

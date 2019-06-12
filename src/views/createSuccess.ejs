@@ -1,7 +1,7 @@
 <html lang="pt-br">
 <head>
     <%# Alterar para o nome do sistema. %>
-    <title>Enviado com sucesso</title>
+    <title><%= message %></title>
     <%- include('./parts/head'); %>
 </head>
 <body>
@@ -9,9 +9,10 @@
 <main>
     <section class="box-search box-header">
         <div class="box-header">
-            <h1>Criado com Sucesso !</h1>
+            <h1 class="verde-escuro"><i class="fas fa-check-circle fa-3x"></i></h1>
+            <h1><%= message %></h1>
         </div>
-        <a href="/dashboard" class="btn">Voltar</a>
+        <a href="/dashboard" class="btn">Página Inicial</a>
     </section>
 </main>
 </body>
