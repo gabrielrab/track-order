@@ -7,6 +7,7 @@ const decoded = require('../services/decodedToken');
 //Models
 const Client = mongoose.model('Client');
 const Order = mongoose.model('Order');
+const User = mongoose.model('User');
 
 module.exports = {
     async createOrder(req, res){
@@ -48,5 +49,18 @@ module.exports = {
         const order = await Order.findById(id).populate('remetente').populate('destinatario');
 
         return res.render('updateTracks', {order});
+    },
+
+    async account(req, res){
+        const id = decoded.decodedToken(req,res);
+
+        try {
+            const user = await User.findById(id);
+            
+            return res.render('account', {user});        
+        } catch (error) {
+            return res.render('login', {error: 'Token não encontrado. Faça o login novamente'});    
+        }
+    
     }
 }

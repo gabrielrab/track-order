@@ -47,12 +47,14 @@ module.exports = {
 
             if(!(await user.compareHash(password))){
                 return res.status(400).render('login', {error: 'Senha incorreta'});
+            } else{
+                //json({user, token: user.genereteToken()}) 
+                //return res.render('token', {user, token: user.genereteToken()});
+                req.token.user = user.genereteToken();
+                return res.redirect('/dashboard');
             }
             
-            //json({user, token: user.genereteToken()}) 
-            //return res.render('token', {user, token: user.genereteToken()});
-            req.token.user = user.genereteToken();
-            return res.redirect('/dashboard');
+            
 
         } catch (error) {
             console.log(error);

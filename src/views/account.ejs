@@ -1,0 +1,55 @@
+<html lang="pt-br">
+<head>
+    <title>Configurações | <%= user.name %></title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+    <%- include('./parts/nav'); %>
+<main>
+    <section class="box-search">
+        <div class="box-header">
+            <img src="img/box.png" alt="" class="img-box">
+            <h1>Seus Dados</h1>
+        </div>
+        <ul>
+            <li>
+                <label class="cinza-escuro">Nome:</label><br>
+                <span><%= user.name %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Email:</label><br>
+                <span><%= user.email %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Telefone:</label><br>
+                <span><%= user.phone %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Endereço:</label><br>
+                <span><%= user.address %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cep:</label><br>
+                <span><%= user.cep %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cidade:</label><br>
+                <span><%= user.city %> / <%= user.uf %></span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="box-search">
+        <div class="box-header">
+            <h1>Configuração do Usuário</h1>
+        </div>
+        <ul>
+            <li><a href="" class="account-links">Troca senha.</a></li>    
+            <li><a href="" class="account-links">Atualizar endereço.</a></li>    
+            <li><a href="" class="account-links">Atualizar dados.</a></li>    
+            <li><a href="/logout" class="account-links"><b class="cinza-claro">Sair.</b></a></li>    
+        </ul>
+    </section>
+</main>
+</body>
+</html>

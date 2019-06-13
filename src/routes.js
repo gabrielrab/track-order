@@ -19,7 +19,8 @@ routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );})
 routes.get('/createOrder', PagesController.createOrder);
 routes.get('/createClient', PagesController.createClient);
 routes.get('/dashboard', authMiddleware, PagesController.goDashboard);
-routes.get('/update', PagesController.updateTracks);
+routes.get('/update', authMiddleware, PagesController.updateTracks);
+routes.get('/account', authMiddleware, PagesController.account);
 
 //routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
 
