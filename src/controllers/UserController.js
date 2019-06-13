@@ -62,6 +62,19 @@ module.exports = {
         }
     },
 
+    async update(req, res){
+        const { id, name, email, phone, cpf } = req.body;
+
+        try {
+            const user = await User.findByIdAndUpdate(id, {name, email, phone, cpf}, {new: true});
+            
+            return res.render('createSuccess', { message: 'Dados atualizados com sucesso!'});
+        } catch (error) {
+            return res.send({error: 'Não foi possivel atualizar os dados. Tente novemente.'});
+        }
+        
+    },
+
     async selectId(req, res){
         const rec = decoded.decodedToken(req, res);
         console.log(rec);

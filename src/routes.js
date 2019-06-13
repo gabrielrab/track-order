@@ -21,6 +21,7 @@ routes.get('/createClient', PagesController.createClient);
 routes.get('/dashboard', authMiddleware, PagesController.goDashboard);
 routes.get('/update', authMiddleware, PagesController.updateTracks);
 routes.get('/account', authMiddleware, PagesController.account);
+routes.get('/userUpdate', authMiddleware, PagesController.userUpdate);
 
 //routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
 
@@ -28,6 +29,7 @@ routes.get('/account', authMiddleware, PagesController.account);
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
 routes.get('/teste', UserController.selectId);
+routes.post('/updateUser', UserController.update);
 
 //Client
 routes.get('/client', ClientController.index);
