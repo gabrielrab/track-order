@@ -75,5 +75,18 @@ module.exports = {
             return res.render('login', {error: 'Token não encontrado. Faça o login novamente'});    
         }
 
+    },
+
+    async addressUpdate(req, res){
+        const id = decoded.decodedToken(req, res);
+
+        try {
+            const user = await User.findById(id);
+            
+            return res.render('addressUpdate', {user});        
+        } catch (error) {
+            return res.render('login', {error: 'Token não encontrado. Faça o login novamente'});    
+        }
+
     }
 }

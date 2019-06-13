@@ -22,6 +22,7 @@ routes.get('/dashboard', authMiddleware, PagesController.goDashboard);
 routes.get('/update', authMiddleware, PagesController.updateTracks);
 routes.get('/account', authMiddleware, PagesController.account);
 routes.get('/userUpdate', authMiddleware, PagesController.userUpdate);
+routes.get('/addressUpdate', authMiddleware, PagesController.addressUpdate);
 
 //routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
 
