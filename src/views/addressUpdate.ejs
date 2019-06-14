@@ -12,8 +12,7 @@
         <img src="img/box.png" alt="" class="img-box"><br>
         <h1 class="titulo">Atualizar seu Endereço</h1>
     </div>
-         <form method="post" action="/updateUser">
-            <input type="text" name="id" value="<%= user._id %>" hidden required>
+         <form method="post" action="/updateUser/?id=<%= user._id %>">
             <span>Endereço:</span>
             <input type="text" name="address" placeholder="Rua, número - Bairro" value="<%= user.address %>" required>
             <span>Cep: </span>

@@ -66,7 +66,7 @@ module.exports = {
         const { id, name, email, phone, cpf } = req.body;
 
         try {
-            const user = await User.findByIdAndUpdate(id, {name, email, phone, cpf}, {new: true});
+            const user = await User.findByIdAndUpdate(req.query.id, req.body, {new: true});
             
             return res.render('createSuccess', { message: 'Dados atualizados com sucesso!'});
         } catch (error) {
