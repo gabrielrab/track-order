@@ -13,17 +13,40 @@ const verifyLogin = require('./middlewares/verifyLogin');
 
 //Páginas
 routes.get('/', (req, res)=>{ res.render("index"); });
-routes.get('/login', verifyLogin, (req, res)=>{ res.render("login"); });
-routes.get('/dashboard', authMiddleware, (req, res)=>{ res.render("rastreador"); }); 
-routes.get('/logado', (req, res)=>{ res.render("logado"); });
+routes.get('/login', verifyLogin, (req, res)=>{ return res.render("login"); }); 
+routes.get('/logado', (req, res)=>{ return res.render("logado"); });
 routes.get('/logout', (req, res)=>{ req.token.reset (); res.redirect ( '/' );}) 
 routes.get('/createOrder', PagesController.createOrder);
 routes.get('/createClient', PagesController.createClient);
+routes.get('/dashboard', authMiddleware, PagesController.goDashboard);
+routes.get('/update', authMiddleware, PagesController.updateTracks);
+routes.get('/account', authMiddleware, PagesController.account);
+routes.get('/userUpdate', authMiddleware, PagesController.userUpdate);
+routes.get('/addressUpdate', authMiddleware, PagesController.addressUpdate);
+
+//routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
+
+
+///Teste de envio de email
+
+const emailService = require('./services/email');
+routes.get('/email', (req, res)=>{
+
+    try {
+        emailService.send('gabriel.camargos@tksolucoes.com.br', 'Bem-vindo ao TrackOrder', '<b>Olá bem vindo ao track-order</b> Este é um teste de envio de em-mail pelo SendGrid');
+        res.send('Ok');    
+    } catch (error) {
+        res.status(400).send('bad');
+        console.log(error);
+    }
+    
+});
 
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);
 routes.get('/teste', UserController.selectId);
+routes.post('/updateUser', UserController.update);
 
 //Client
 routes.get('/client', ClientController.index);
@@ -37,7 +60,7 @@ routes.get('/allorder', OrderController.index);
 routes.get('/order/', OrderController.show);
 routes.post('/order', OrderController.create);
 routes.put('/order', OrderController.update);
-routes.put('/push-tracks', OrderController.tracks);
-routes.delete('/order/:orderCode', OrderController.destroy);
+routes.post('/push-tracks', OrderController.tracks);
+routes.get('/delete-order', OrderController.destroy);
 
 module.exports = routes;

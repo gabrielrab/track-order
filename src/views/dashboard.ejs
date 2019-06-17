@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Rastreamento de Encomenda</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+    <header>
+        <h1 class="titulo">Dashboard</h1>
+        <p class="cinza-escuro">Domingo, 08 de junho de 2019</p>
+    </header>
+    <main id="main-dashboard">
+        <div class="line-cards">
+            <div class="card">
+                <a href="/createOrder" class="white"><h3>Nova<br>Encomenda</h3></a>   
+            </div>
+
+            <div class="card">
+                <a href="/createClient" class="white"><h3>Novo<br>Cliente</h3></a>   
+            </div>
+
+            <div class="card">
+                <a href="/account" class="white"><h3>Suas<br>Configurações</h3></a>
+            </div>
+        </div>
+        <section>
+            <h1 class="titulo">Encomendas</h1>
+            <table class="d-table">
+                <tr>
+                    <th>Código</th>
+                    <th>Destinatário</th>
+                    <th>Status</th>
+                    <th>Atualizar</th>
+                    <th>Deletar</th>
+                </tr>
+                <% for(let i=0; i < orders.length;i++) {%>
+                <tr class="d-row">
+                    <td class="d-td"><%= orders[i].code %></td>
+                    <td class="d-td"><a class="hover" href="/order/?orderCode=<%= orders[i].code %>"><%= orders[i].destinatario.name %></a></td>
+                    <td class="d-td"><%= orders[i].status %></td>
+                    <td class="d-td"><a href="/update?id=<%= orders[i]._id %>"><i class="fas fa-arrow-circle-right fa-2x verde-escuro"></i></a></td>
+                    <td class="d-td"><a href="/delete-order?orderCode=<%= orders[i].code %>"><i class="fas fa-trash fa-2x"></i></a></td>
+                </tr>
+                <%}%>
+            </table>
+        </section>
+    </main>
+</body>
+</html>

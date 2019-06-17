@@ -1,1 +1,73 @@
-<h1>Chegou <%= id %></h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <%# Alterar para o nome do sistema. %>
+    <title>Adicionar Cliente</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+    <%- include('./parts/nav'); %>
+<main>
+    <section class="box-search">
+    <div class="box-header">
+        <img src="img/box.png" alt="" class="img-box"><br>
+        <h1 class="titulo">Adicionar Cliente</h1>
+    </div>
+         <form method="post" action="/client">
+            <input type="text" name="clientFor" value="<%= id %>" hidden required>
+            <span>Qual o nome do cliente ?</span>
+            <input type="text" name="name" required>
+            <span>Email:</span>
+            <input type="email" name="email" required>
+            <span>Telefone:</span>
+            <input type="text" name="phone" required>
+            <span>Cpf / cnpj:</span>
+            <input type="text" name="cpf" required>
+            <span>Endereço:</span>
+            <input type="text" name="address" placeholder="Rua, número - Bairro" required>
+            <span>Cep: </span>
+            <input type="text" name="cep" required>
+            <span>Cidade:</span>
+            <input type="text" name="city" required>
+            <span>Estado: </span>
+            <select name="uf" required>
+                <option hidden>Selecione o estado</option>
+                <option value="AC">Acre</option>
+	            <option value="AL">Alagoas</option>
+	            <option value="AP">Amapá</option>
+	            <option value="AM">Amazonas</option>
+	            <option value="BA">Bahia</option>
+	            <option value="CE">Ceará</option>
+	            <option value="DF">Distrito Federal</option>
+	            <option value="ES">Espírito Santo</option>
+	            <option value="GO">Goiás</option>
+	            <option value="MA">Maranhão</option>
+	            <option value="MT">Mato Grosso</option>
+	            <option value="MS">Mato Grosso do Sul</option>
+	            <option value="MG">Minas Gerais</option>
+	            <option value="PA">Pará</option>
+	            <option value="PB">Paraíba</option>
+	            <option value="PR">Paraná</option>
+	            <option value="PE">Pernambuco</option>
+	            <option value="PI">Piauí</option>
+	            <option value="RJ">Rio de Janeiro</option>
+	            <option value="RN">Rio Grande do Norte</option>
+	            <option value="RS">Rio Grande do Sul</option>
+	            <option value="RO">Rondônia</option>
+	            <option value="RR">Roraima</option>
+	            <option value="SC">Santa Catarina</option>
+	            <option value="SP">São Paulo</option>
+	            <option value="SE">Sergipe</option>
+	            <option value="TO">Tocantins</option>
+            </select>
+            <button type="submit"> Criar</button>
+        </form>
+        <div class="box-header">
+        <% if(typeof(error) != "undefined"){ %>
+            <span class="error"><%= error %></span>
+        <% } %>
+        </div>
+    </section>
+</main>
+</body>
+</html>

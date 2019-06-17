@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Atualizar dados</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+    <%- include('./parts/nav'); %>
+<main>
+    <section class="box-search">
+    <div class="box-header">
+        <img src="img/box.png" alt="" class="img-box"><br>
+        <h1 class="titulo">Atualizar Dados</h1>
+    </div>
+         <form method="post" action="/updateUser">
+            <input type="text" name="id" value="<%= user._id %>" hidden required>
+            <span>Seu nome:</span>
+            <input type="text" name="name" value="<%= user.name %>" required>
+            <span>Email:</span>
+            <input type="email" name="email" value="<%= user.email %>" required>
+            <span>Telefone:</span>
+            <input type="text" name="phone" value="<%= user.phone %>" required>
+            <span>Cpf / cnpj:</span>
+            <input type="text" name="cpf" value="<%= user.cpf %>" required>
+            <button type="submit"> Atualizar</button>
+        </form>
+        <div class="box-header">
+        <% if(typeof(error) != "undefined"){ %>
+            <span class="error"><%= error %></span>
+        <% } %>
+        </div>
+    </section>
+</main>
+</body>
+</html>

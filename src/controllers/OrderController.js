@@ -2,6 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Order = mongoose.model('Order');
+const Client = mongoose.model('Client');
+
+//Services
+const emailService = require('../services/email');
 
 module.exports = {
     async index(req, res){
@@ -29,7 +33,11 @@ module.exports = {
         try {
             const order = await Order.create({remetente: remetente, destinatario: destinatario, status: status, arrivedAt: formatedData});
 
-            return res.json(order);
+            const dest = await Client.findById(destinatario);
+            
+            emailService.send(dest.email, 'Rastreamento criado com sucesso', 'Olá seu reastreamento foi criado com sucesso. Este é o código de rastreio: '+order.code);
+
+            return res.render('createSuccess', {message: 'Rastreamento criado com sucesso!'});
         } catch (error) {
             console.log(error);
             return res.status(400).send({error: 'Create order error'});
@@ -43,6 +51,7 @@ module.exports = {
                     console.log(error);
                     return res.status(400).send({error: 'Update order error'}); 
                 } else{
+                    //Adicionar aqui envio de email com atualização
                     return res.json(order);
                 }
             });
@@ -55,22 +64,30 @@ module.exports = {
     },
 
     async tracks (req, res){
-        //const { code, status, observation, trackedAt, unit } = req.query;
-        const code = req.query.code;
+        const { status, observation, unit } = req.body;
+        
+        try {
+            const order = await Order.findOneAndUpdate({'code': req.body.code}, {$push: {tracks: {status, observation, unit}}});
+            //aqui
 
-        const order = await Order.findOneAndUpdate({'code': code}, {$push: {tracks: req.body}});
+            const dest = await Client.findById(order.destinatario);
+            //adicionar base_url_api
+            emailService.send(dest.email, 'Rastreamento do pedido atualizado: '+status, 'O rastreamento da sua encomenda foi atualizado. Confira as atualizações <a href="'+process.env.BASE_URL_API+'/order/?orderCode='+req.body.code+'">Aqui</a>');
 
-        return res.send({order});
+            return res.render('createSuccess', {message: 'Atualização realizada com sucesso !'});    
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     async destroy(req, res){
         try {
-            const order = await Order.findOneAndDelete({'code': req.params.orderCode}, (err, order)=>{
+            const order = await Order.findOneAndDelete({'code': req.query.orderCode}, (err, order)=>{
                 if (err) {
                     console.log(err)
                     res.status(400).send({error: 'Delete order error'});
                 } else {
-                    res.send('Delete order success');
+                    res.render('createSuccess', {message: 'Rastreamento de encomenda deletado com sucesso!'});
                 }
             });
         } catch (error) {
