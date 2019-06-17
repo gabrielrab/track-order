@@ -26,6 +26,22 @@ routes.get('/addressUpdate', authMiddleware, PagesController.addressUpdate);
 
 //routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
 
+
+///Teste de envio de email
+
+const emailService = require('./services/email');
+routes.get('/email', (req, res)=>{
+
+    try {
+        emailService.send('gabriel.camargos@tksolucoes.com.br', 'Bem-vindo ao TrackOrder', '<b>Olá bem vindo ao track-order</b> Este é um teste de envio de em-mail pelo SendGrid');
+        res.send('Ok');    
+    } catch (error) {
+        res.status(400).send('bad');
+        console.log(error);
+    }
+    
+});
+
 //User
 routes.post('/register', UserController.create);
 routes.post('/authenticate', UserController.authenticate);

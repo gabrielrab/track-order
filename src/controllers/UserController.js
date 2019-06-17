@@ -5,6 +5,7 @@ const User = mongoose.model('User');
 
 //Service
 const decoded = require('../services/decodedToken');
+const emailService = require('../services/email');
 
 module.exports = {
     async index(req, res){
@@ -30,6 +31,10 @@ module.exports = {
                 return res.status(400).send({ error: 'User already exist'});
             }
             const user = await User.create(req.body);
+            
+            //Serviço de email, aprimorar-lo 
+            emailService.send(req.body.email, 'Bem vindo ao Track Order', '<h1>Estamos felizes por ter você conosco...</h1>');
+
             return res.json({user});
         } catch (error) {
             return res.status(400).json({ error: "User registration failed" });

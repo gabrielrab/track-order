@@ -5,6 +5,8 @@ const requireDir = require('require-dir');
 const cors = require('cors');
 const session = require('client-sessions');
 
+//incluir dotenv
+
 
 //App
 const app = express();
