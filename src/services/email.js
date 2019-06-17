@@ -1,12 +1,10 @@
-
-
 const sendgrid = require('@sendgrid/mail');
-sendgrid.setApiKey(sendgrid_key);
+sendgrid.setApiKey(process.env.SENDGRID_KEY);
 
 exports.send = async(to, subject, body)=> {
     sendgrid.send({
         to: to,
-        from: 'rabelogabriel72@gmail.com',
+        from: process.env.SENDGRID_EMAIL_SENDER,
         subject: subject,
         html: body
     });

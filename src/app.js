@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 const requireDir = require('require-dir');
 const cors = require('cors');
 const session = require('client-sessions');
-
-//incluir dotenv
-
+require('dotenv').config();
 
 //App
 const app = express();
@@ -15,11 +13,10 @@ const server = require('http').Server(app);
 
 app.use(session({
     cookieName: 'token',
-    secret: 'secret',
+    secret: process.env.COOKIE_SESSION_SECRET,
     duration: 30 * 60 * 1000,
     activeDuration: 5 * 60 * 1000,
     ephemeral: true
-
 }));
 
 app.use(express.json());
@@ -41,7 +38,7 @@ app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
 
 //Banco de Dados
-mongoose.connect('mongodb://gabrielrab:67920000Ab@ds331145.mlab.com:31145/api-tasks', { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false});
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false});
 
 //Models
 requireDir('./models');
