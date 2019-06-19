@@ -63,6 +63,7 @@ module.exports = {
         
     },
 
+    //Arrumar status do pedido, versão atual so atualiza o da tracks
     async tracks (req, res){
         const { status, observation, unit } = req.body;
         
@@ -73,6 +74,8 @@ module.exports = {
             const dest = await Client.findById(order.destinatario);
             //adicionar base_url_api
             emailService.send(dest.email, 'Rastreamento do pedido atualizado: '+status, 'O rastreamento da sua encomenda foi atualizado. Confira as atualizações <a href="'+process.env.BASE_URL_API+'/order/?orderCode='+req.body.code+'">Aqui</a>');
+
+            console.log(dest.email, 'Rastreamento do pedido atualizado: '+status, 'O rastreamento da sua encomenda foi atualizado. Confira as atualizações <a href="'+process.env.BASE_URL_API+'/order/?orderCode='+req.body.code+'">Aqui</a>');
 
             return res.render('createSuccess', {message: 'Atualização realizada com sucesso !'});    
         } catch (error) {
