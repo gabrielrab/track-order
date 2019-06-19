@@ -69,13 +69,12 @@ module.exports = {
         
         try {
             const order = await Order.findOneAndUpdate({'code': req.body.code}, {$push: {tracks: {status, observation, unit}}});
-            //aqui
 
             const dest = await Client.findById(order.destinatario);
-            //adicionar base_url_api
-            emailService.send(dest.email, 'Rastreamento do pedido atualizado: '+status, 'O rastreamento da sua encomenda foi atualizado. Confira as atualizações <a href="'+process.env.BASE_URL_API+'/order/?orderCode='+req.body.code+'">Aqui</a>');
 
-            console.log(dest.email, 'Rastreamento do pedido atualizado: '+status, 'O rastreamento da sua encomenda foi atualizado. Confira as atualizações <a href="'+process.env.BASE_URL_API+'/order/?orderCode='+req.body.code+'">Aqui</a>');
+            const emailTeamplate = require('../resourse/welcome-email.html');
+        
+            emailService.send(dest.email, 'Rastreamento do pedido atualizado: '+status, emailTeamplate.replace('{0}'));
 
             return res.render('createSuccess', {message: 'Atualização realizada com sucesso !'});    
         } catch (error) {
