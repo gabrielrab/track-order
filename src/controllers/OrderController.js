@@ -94,5 +94,30 @@ module.exports = {
             console.log(error);
             return res.status(400).send({error: 'Delete order error'})
         }
+    },
+
+    async printLabel(req, res){
+        
+        const PDFKit = require('pdfkit');
+        const fs = require('fs');
+
+        const pdf = new PDFKit();
+
+        pdf.text('Opa ! Text do pdf');
+
+        pdf.pipe(fs.createWriteStream('output.pdf'));
+        pdf.end();
+        
+
+        // const orderCode = 10; //Alterar para valor dinâmico
+
+        // const order = await Order.findOne({'code': orderCode}, (err, order)=>{
+        //     if(err){
+        //         return res.status(400).send({error: 'Code not found'})
+        //     } else{
+        //         return res.render('print-label', {order});
+        //     }
+        // }).populate('remetente').populate('destinatario');
+
     }
 }

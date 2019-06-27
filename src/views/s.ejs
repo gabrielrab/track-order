@@ -1,0 +1,51 @@
+<html lang="pt-br">
+<head>
+    <title>Imprimir Label</title>
+    <%- include('./parts/head'); %>
+</head>
+<body>
+<main>
+    <div class="box-search">
+        <h1>Destinatário:</h1>
+        <ul>
+            <li>
+                <label class="cinza-escuro">Nome:</label><br>
+                <span><%= order.destinatario.name %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Endereço:</label><br>
+                <span><%= order.destinatario.address %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cep:</label><br>
+                <span><%= order.destinatario.cep %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cidade:</label><br>
+                <span><%= order.destinatario.city %> / <%= order.destinatario.uf %></span>
+            </li>
+        </ul>
+        <hr>
+        <h1>Remetente:</h1>
+        <ul>
+            <li>
+                <label class="cinza-escuro">Nome:</label><br>
+                <span><%= order.remetente.name %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Endereço:</label><br>
+                <span><%= order.remetente.address %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cep:</label><br>
+                <span><%= order.remetente.cep %></span>
+            </li>
+            <li>
+                <label class="cinza-escuro">Cidade:</label><br>
+                <span><%= order.remetente.city %> / <%= order.remetente.uf %></span>
+            </li>
+        </ul>
+    </div>    
+</main>
+</body>
+</html>

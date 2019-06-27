@@ -23,10 +23,6 @@ routes.get('/update', authMiddleware, PagesController.updateTracks);
 routes.get('/account', authMiddleware, PagesController.account);
 routes.get('/userUpdate', authMiddleware, PagesController.userUpdate);
 routes.get('/addressUpdate', authMiddleware, PagesController.addressUpdate);
-
-//routes.get('/success', (req, res)=>{ return res.render("createSuccess"); });
-
-
 ///Teste de envio de email
 
 const emailService = require('./services/email');
@@ -62,5 +58,7 @@ routes.post('/order', OrderController.create);
 routes.put('/order', OrderController.update);
 routes.post('/push-tracks', OrderController.tracks);
 routes.get('/delete-order', OrderController.destroy);
+//teste
+routes.get('/print-label', OrderController.printLabel)
 
 module.exports = routes;
