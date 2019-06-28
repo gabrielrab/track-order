@@ -1,7 +1,63 @@
 <html lang="pt-br">
 <head>
     <title>Imprimir Label</title>
-    <%- include('./parts/head'); %>
+    <style>
+    *,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400');
+
+body {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    color: #303030;
+    background-color: #efefee;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.white{color: white;}
+.cinza-claro{ color: #D0D2D2 }
+.bg-cinza-claro{ color: #D0D2D2 }
+
+.cinza-escuro{ color: #494949 }
+.bg-cinza-escuro{ color: #A6A6A6 }
+
+.verde-escuro{ color: #00DD61 }
+.bg-verde-escuro{ color: #00DD61 }
+
+        main{
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.box-search{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2em 1.5em 2em 1.5em;
+    min-width: 290px;
+    max-width: 350px;
+    border-radius: 3px;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
+    margin-right: 10px; 
+    margin-bottom: 10px; 
+}
+    </style>
 </head>
 <body>
 <main>
