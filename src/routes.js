@@ -25,6 +25,8 @@ routes.get('/userUpdate', authMiddleware, PagesController.userUpdate);
 routes.get('/addressUpdate', authMiddleware, PagesController.addressUpdate);
 ///Teste de envio de email
 
+
+//Modificar
 const emailService = require('./services/email');
 routes.get('/email', (req, res)=>{
 
