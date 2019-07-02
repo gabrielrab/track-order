@@ -1,8 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const ejs = require("ejs");
-const pdf = require("html-pdf");
-const path = require("path");
 
 const Order = mongoose.model('Order');
 const Client = mongoose.model('Client');
@@ -85,53 +82,52 @@ module.exports = {
 
     async destroy(req, res){
         try {
-            const order = await Order.findOneAndDeconste({'code': req.query.orderCode}, (err, order)=>{
+            const order = await Order.findOneAndDelete({'code': req.query.orderCode}, (err, order)=>{
                 if (err) {
                     console.log(err)
-                    res.status(400).send({error: 'Deconste order error'});
+                    res.status(400).send({error: 'Delete order error'});
                 } else {
-                    res.render('createSuccess', {message: 'Rastreamento de encomenda deconstado com sucesso!'});
+                    res.render('createSuccess', {message: 'Rastreamento de encomenda deletado com sucesso!'});
                 }
             });
         } catch (error) {
             console.log(error);
-            return res.status(400).send({error: 'Deconste order error'})
+            return res.status(400).send({error: 'Delete order error'})
         }
     },
 
     async printLabel(req, res){
-        const orderCode = 10; //Alterar para valor dinâmico
+        
+        const PDFKit = require('pdfkit');
+        const fs = require('fs');
 
-        const order = await Order.findOne({'code': orderCode}, (err, order)=>{
-            if(err){
-                return res.status(400).send({error: 'Code not found'})
-            } else{
-
-                ejs.renderFile(path.join(__dirname, '../views/s.ejs'), {order}, (err, data)=> {
-                    if(err){
-                        return res.send(err);
-                    } else{
-                        const options = {
-                            "height": "11.25in",
-                            "width": "8.5in",
-                            "header": {
-                                "height": "20mm"
-                            },
-                            "footer": {
-                                "height": "20mm",
-                            },
-                        };
-                        pdf.create(data, options).toFile("report.pdf", function (err, data) {
-                            if (err) {
-                                res.send(err);
-                            } else {
-                                res.send("File created successfully");
-                            }
-                        });
-                    }
-                });
+        const pdf = new PDFKit({
+            size: [595,842],
+            layout: 'portrait',
+            margins:{
+                top:0,
+                right: 0,
+                left:0,
+                bottom:0
             }
-        }).populate('remetente').populate('destinatario');
+        });
+
+        pdf.image('./src/public/img/logo.png', 40.8, 22.4, {scale: 0.5});
+
+        pdf.pipe(fs.createWriteStream('is'+Date.now()+'.pdf'));
+        pdf.end();
+
+        return res.status(200).send('Created');
+
+        // const orderCode = 10; //Alterar para valor dinâmico
+
+        // const order = await Order.findOne({'code': orderCode}, (err, order)=>{
+        //     if(err){
+        //         return res.status(400).send({error: 'Code not found'})
+        //     } else{
+        //         return res.render('print-label', {order});
+        //     }
+        // }).populate('remetente').populate('destinatario');
 
     }
 }

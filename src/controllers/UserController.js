@@ -32,8 +32,10 @@ module.exports = {
             }
             const user = await User.create(req.body);
             
+            const emailTeamplate = require('../resourse/welcome-email.html');
+
             //Serviço de email, aprimorar-lo 
-            emailService.send(req.body.email, 'Bem vindo ao Track Order', '<h1>Estamos felizes por ter você conosco...</h1>');
+            emailService.send(req.body.email, 'Bem vindo ao Track Order', emailTeamplate.replace('{0}'));
 
             return res.json({user});
         } catch (error) {

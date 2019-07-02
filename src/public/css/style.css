@@ -164,13 +164,19 @@ td, th{ padding: 0.5em; font-size: 1.2em;}
 .error{ color: red;}
 
 header{
-    background-color: white;
     width: 100vw;
-    height: 10vh;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    padding: 0.5em;
+}
+header h1{
+    font-size: 4em;
+}
+header img{
+    margin-right: 0.5em;
 }
 #main-dashboard{
     width: 100vw;

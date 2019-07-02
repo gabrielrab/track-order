@@ -6,6 +6,9 @@ exports.send = async(to, subject, body)=> {
         to: to,
         from: process.env.SENDGRID_EMAIL_SENDER,
         subject: subject,
-        html: body
+        content: [{
+            type: 'text/html',
+            value: body,
+        }] 
     });
 }
